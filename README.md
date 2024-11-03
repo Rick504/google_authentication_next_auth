@@ -7,36 +7,44 @@
                 - https://www.youtube.com/watch?v=avSIzMivb6U&t=190s&ab_channel=TypeDev%7CRodrigoLima (Autenticação NextAuth com Google | Next.js 14+)
                 - https://www.youtube.com/watch?v=tgO_ADSvY1I&t=266s&ab_channel=Appwrite (Setup Google OAuth sign in 6 minutes)
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
-
 ## Getting Started
+
+To run this project, you need to create a .env file in the project root with the following environment variables:
+
+```javascript
+GOOGLE_ID=
+GOOGLE_SECRET=
+
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=
+```
+
+Get GOOGLE_ID and GOOGLE_SECRET from Google Cloud Credentials under Credentials > OAuth 2.0 Client IDs.
+
+## ⚠️ Alerta Importante
+
+**You can quickly create a good value on the command line via this openssl command.**
+
+Genereted NEXTAUTH_SECRET:
+
+```bash
+$ openssl rand -base64 32
+```
+
+Documentation:
+https://next-auth.js.org/configuration/options#nextauth_secret
+
+Be sure to replace the values ​​as needed for your environment.
+
+## Start Project
 
 First, run the development server:
 
 ```bash
+npm install --legacy-peer-deps
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
 ## Deploy on Vercel
 
