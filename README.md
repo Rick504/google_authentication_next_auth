@@ -1,3 +1,12 @@
+# NextAuth
+
+    - Create credentials:
+        - Google:
+            site: https://karthickragavendran.medium.com/setup-guide-for-nextauth-with-google-and-credentials-providers-in-next-js-13-8f5f13414c1e
+            videos:
+                - https://www.youtube.com/watch?v=avSIzMivb6U&t=190s&ab_channel=TypeDev%7CRodrigoLima (Autenticação NextAuth com Google | Next.js 14+)
+                - https://www.youtube.com/watch?v=tgO_ADSvY1I&t=266s&ab_channel=Appwrite (Setup Google OAuth sign in 6 minutes)
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
