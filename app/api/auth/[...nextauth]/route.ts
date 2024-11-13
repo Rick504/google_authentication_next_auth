@@ -1,11 +1,28 @@
 import NextAuth from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
+import CredentialsProvider from "next-auth/providers/credentials";
 
 const handler = NextAuth({
   providers: [
+         CredentialsProvider({
+            name: 'Sign in with...',
+            credentials: {
+                email: {},
+                password: {},
+            },
+            async authorize(credentials) {
+                console.log(credentials)
+                const user = { id: '1', name: 'J Smith', email: 'jsmith@example.com' }
+                if (user) {
+                    return user
+                } else {
+                    return null
+                }
+            },
+        }),
         GoogleProvider({
-            clientId: process.env.GOOGLE_ID || '',
-            clientSecret: process.env.GOOGLE_SECRET || ''
+            clientId: process.env.GOOGLE_ID || `user`,
+            clientSecret: process.env.GOOGLE_SECRET || 'error message'
         })
     ],
 })
