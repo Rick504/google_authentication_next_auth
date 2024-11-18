@@ -2,7 +2,8 @@ import { signIn } from 'next-auth/react';
 import { useState } from 'react';
 import isEmail from 'validator/es/lib/isEmail';
 import { useDispatch } from 'react-redux';
-import { isLoading } from '../redux/storeSlice';
+import { isLoading } from '../../redux/storeSlice';
+import TermsConditions from './TermsConditions';
 
 export default function RegisterUser() {
   const [userName, setUserName] = useState('');
@@ -106,6 +107,7 @@ export default function RegisterUser() {
             className='border p-1 flex-grow'
           />
         </div>
+        <TermsConditions />
         {passwordError && (
           <div className='text-red-500 text-sm mt-1'>{passwordError}</div>
         )}
