@@ -4,12 +4,17 @@ import { useState } from 'react';
 import LoginGoogle from './components/LoginGoogle';
 import LoginDataUser from './components/LoginDataUser';
 import RegisterUser from './components/RegisterUser';
+import Loader from './components/Loader';
+import { useSelector } from 'react-redux';
+import { RootState } from './redux/store';
 
 export default function Login() {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+  const loading = useSelector((state: RootState) => state.store.loading);
 
   return (
     <>
+      {loading && <Loader />}
       <div className='flex flex-col justify-center items-center mt-20 gap-10'>
         <div className='p-8 border'>
           <div className='flex justify-center gap-5'>
