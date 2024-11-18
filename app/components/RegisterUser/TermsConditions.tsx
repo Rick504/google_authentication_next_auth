@@ -1,8 +1,8 @@
 import React from 'react';
 
 const TermsConditions = () => {
-  const termsLink = '###';
-  const privacyPolicy = '###';
+  const termsLink = 'termsConditions';
+  const privacyPolicy = 'privacyPolicy';
 
   return (
     <div className='flex flex-col items-start gap-1 my-5 text-sm'>
