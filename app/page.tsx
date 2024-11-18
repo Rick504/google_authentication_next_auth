@@ -1,10 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import LoginGoogle from './components/LoginGoogle';
-import LoginDataUser from './components/LoginDataUser';
-import RegisterUser from './components/RegisterUser';
-import Loader from './components/Loader';
+import { LoginGoogle, LoginDataUser, RegisterUser, Loader } from './components';
 import { useSelector } from 'react-redux';
 import { RootState } from './redux/store';
 
