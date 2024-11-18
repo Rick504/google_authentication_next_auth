@@ -91,6 +91,7 @@ export default function RegisterUser() {
             required
             maxLength={150}
             className='border p-1 flex-grow'
+            autoComplete='new-password'
           />
         </div>
         <div className='flex flex-col items-start my-2'>

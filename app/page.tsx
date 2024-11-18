@@ -9,11 +9,15 @@ export default function Login() {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
   const loading = useSelector((state: RootState) => state.store.loading);
 
+  const loginGoogleText = isUserLoggedIn
+    ? 'Ou registre-se com:'
+    : 'Conectar com:';
+
   return (
     <>
       {loading && <Loader />}
       <div className='flex flex-col justify-center items-center mt-20 gap-10'>
-        <div className='p-8 border'>
+        <div className='p-12 w-96 border'>
           <div className='flex justify-center gap-5'>
             <button
               className='mt-4 w-full py-2 bg-green-500 text-white'
@@ -28,14 +32,8 @@ export default function Login() {
               Entrar
             </button>
           </div>
-          {!isUserLoggedIn ? (
-            <div className='flex flex-col items-center gap-5'>
-              <LoginDataUser />
-              <LoginGoogle />
-            </div>
-          ) : (
-            <RegisterUser />
-          )}
+          {!isUserLoggedIn ? <LoginDataUser /> : <RegisterUser />}
+          <LoginGoogle text={loginGoogleText} />
         </div>
       </div>
     </>

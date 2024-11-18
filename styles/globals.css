@@ -6,3 +6,10 @@
   --background: #ffffff;
   --foreground: #171717;
 }
+
+.center-full {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

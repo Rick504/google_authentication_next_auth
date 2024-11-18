@@ -34,7 +34,7 @@ export default function LoginDataUser() {
   };
 
   return (
-    <div>
+    <div className='flex flex-col items-center'>
       <form className='text-center' onSubmit={handleLogin}>
         <div className='flex flex-col items-start my-2'>
           <label htmlFor='email' className='my-2'>
