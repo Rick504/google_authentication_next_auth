@@ -11,9 +11,9 @@ const handler = NextAuth({
                 password: {},
             },
             async authorize(credentials) {
-                console.log(credentials)
-                const user = { id: '1', name: 'J Smith', email: 'jsmith@example.com' }
-                if (user) {
+                console.log('credentials::', credentials)
+                const user = { id: '1', name: 'MUDAR', email: credentials!.email}
+                if (user.email) {
                     return user
                 } else {
                     return null

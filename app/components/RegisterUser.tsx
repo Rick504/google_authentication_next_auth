@@ -1,5 +1,8 @@
+import { signIn } from 'next-auth/react';
 import { useState } from 'react';
 import isEmail from 'validator/es/lib/isEmail';
+import { useDispatch } from 'react-redux';
+import { isLoading } from '../redux/storeSlice';
 
 export default function RegisterUser() {
   const [userName, setUserName] = useState('');
@@ -8,6 +11,7 @@ export default function RegisterUser() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
+  const dispatch = useDispatch();
 
   const isEmailValid = (email: string) => {
     return isEmail(email);
@@ -29,8 +33,13 @@ export default function RegisterUser() {
     }
 
     setPasswordError('');
-    // Aqui você pode adicionar a lógica para enviar os dados para o backend
-    console.log('Cadastro realizado com sucesso');
+    dispatch(isLoading(true));
+
+    await signIn('credentials', {
+      email,
+      password,
+      callbackUrl: '/dashboard',
+    });
   };
 
   return (

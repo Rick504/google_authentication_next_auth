@@ -1,11 +1,15 @@
 import { signIn } from 'next-auth/react';
 import { useState } from 'react';
 import isEmail from 'validator/es/lib/isEmail';
+import { useDispatch } from 'react-redux';
+import { isLoading } from '../redux/storeSlice';
 
 export default function LoginDataUser() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
+
+  const dispatch = useDispatch();
 
   const isEmailValid = (email: string) => {
     return isEmail(email);
@@ -20,6 +24,7 @@ export default function LoginDataUser() {
     }
 
     setEmailError('');
+    dispatch(isLoading(true));
 
     await signIn('credentials', {
       email,

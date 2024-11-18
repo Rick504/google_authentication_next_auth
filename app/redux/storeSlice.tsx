@@ -7,11 +7,11 @@ const slice = createSlice({
     loading: false,
   },
   reducers: {
-    isLoading: (state) => {
-      return { ...state, loading: true };
+    isLoading: (state, { payload }) => {
+      state.loading = payload;
     },
     setUser: (state, { payload }) => {
-      return { ...state, user: payload };
+      state.user = payload;
     },
   },
 });
