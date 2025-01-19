@@ -44,6 +44,12 @@ First, run the development server:
 npm install --legacy-peer-deps
 
 npm run dev
+
+ou
+
+pnpm install
+
+pnpm run dev
 ```
 
 ## Deploy on Vercel
