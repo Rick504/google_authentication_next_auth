@@ -3,8 +3,12 @@
 import { signOut } from 'next-auth/react';
 import Image from 'next/image';
 import { UserGoole } from '../interfaces/user';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../redux/storeSlice';
 
 export default function UserDashboard({ user }: { user: UserGoole }) {
+  const dispatch = useDispatch();
+  dispatch(setUser(user));
   return (
     <div className='flex flex-col items-center justify-center gap-3 mt-20'>
       {user.image && (

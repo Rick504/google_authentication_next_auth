@@ -17,6 +17,8 @@ GOOGLE_SECRET=
 
 NEXTAUTH_URL=http://localhost:3000
 NEXTAUTH_SECRET=
+
+BASE_URL_BACKEND=
 ```
 
 Get GOOGLE_ID and GOOGLE_SECRET from Google Cloud Credentials under Credentials > OAuth 2.0 Client IDs.
