@@ -12,7 +12,7 @@ export default function RegisterUser() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
-  const [isTermsAccepted, setIsTermsAccepted] = useState(false); // Estado para controle do checkbox
+  const [isTermsAccepted, setIsTermsAccepted] = useState(false);
   const dispatch = useDispatch();
 
   const isEmailValid = (email: string) => {
@@ -126,7 +126,7 @@ export default function RegisterUser() {
         <button
           type='submit'
           className='mt-4 w-full py-2 bg-blue-500 text-white rounded'
-          disabled={!isTermsAccepted} // Botão desabilitado se os termos não forem aceitos
+          disabled={!isTermsAccepted}
         >
           Cadastrar
         </button>

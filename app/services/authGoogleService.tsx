@@ -1,4 +1,3 @@
-// services/authService.ts
 import api from '@/app/services/config/index';
 import { AuthProviderGoogle } from '@/app/interfaces/auth';
 
