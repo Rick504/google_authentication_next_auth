@@ -12,6 +12,7 @@ export default function RegisterUser() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
+  const [isTermsAccepted, setIsTermsAccepted] = useState(false); // Estado para controle do checkbox
   const dispatch = useDispatch();
 
   const isEmailValid = (email: string) => {
@@ -108,6 +109,16 @@ export default function RegisterUser() {
             className='border p-1 flex-grow'
           />
         </div>
+        <div className='flex items-center my-2'>
+          <input
+            type='checkbox'
+            id='terms'
+            checked={isTermsAccepted}
+            onChange={(e) => setIsTermsAccepted(e.target.checked)}
+            className='mr-2'
+          />
+          <label htmlFor='terms'>Eu aceito os Termos e Condições</label>
+        </div>
         <TermsConditions />
         {passwordError && (
           <div className='text-red-500 text-sm mt-1'>{passwordError}</div>
@@ -115,6 +126,7 @@ export default function RegisterUser() {
         <button
           type='submit'
           className='mt-4 w-full py-2 bg-blue-500 text-white rounded'
+          disabled={!isTermsAccepted} // Botão desabilitado se os termos não forem aceitos
         >
           Cadastrar
         </button>

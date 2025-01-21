@@ -47,7 +47,7 @@ export default function LoginDataUser() {
             onChange={(e) => setEmail(e.target.value)}
             required
             maxLength={50}
-            className={`border p-1 flex-grow ${
+            className={`border border-black p-1 flex-grow ${
               emailError ? 'border-red-500' : ''
             }`}
           />
@@ -66,7 +66,7 @@ export default function LoginDataUser() {
             onChange={(e) => setPassword(e.target.value)}
             required
             maxLength={150}
-            className='border p-1 flex-grow'
+            className='border border-black p-1 flex-grow'
           />
         </div>
         <button

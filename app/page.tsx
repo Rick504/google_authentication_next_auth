@@ -17,7 +17,7 @@ export default function Login() {
     <>
       {loading && <Loader />}
       <div className='flex flex-col justify-center items-center mt-20 gap-10'>
-        <div className='p-12 w-96 border'>
+        <div className='p-12 w-96 border border-black'>
           <div className='flex justify-center gap-5'>
             <button
               className='mt-4 w-full py-2 bg-green-500 text-white'
