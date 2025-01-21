@@ -3,7 +3,12 @@ import { createSlice } from '@reduxjs/toolkit';
 const slice = createSlice({
   name: 'store',
   initialState: {
-    user: {},
+    user: {
+      name: 'value init',
+      email: 'value init',
+      image: 'value init',
+      token: 'value init',
+    },
     loading: false,
   },
   reducers: {
