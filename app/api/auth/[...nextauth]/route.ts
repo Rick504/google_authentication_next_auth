@@ -1,6 +1,9 @@
 import NextAuth from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 import CredentialsProvider from "next-auth/providers/credentials";
+import { AuthProviderGoogle } from '../../../interfaces/auth';
+import { authService } from '@/app/services/authGoogleService';
+
 
 const handler = NextAuth({
   providers: [
@@ -31,14 +34,24 @@ const handler = NextAuth({
     }),
   ],
   callbacks: {
-    signIn({ user, account, profile, email, credentials }) {
-      console.log('signIn callback::');
-      console.log(user);
-      console.log(account?.type);
-      console.log(profile);
-      console.log(email);
-      console.log(credentials);
-      return true;
+    async signIn({ user, account }) {
+      const accounTypeProvider = 'oauth';
+      if (account?.type === accounTypeProvider) {
+        const authProviderGoogle: AuthProviderGoogle = {
+          provider: 'google',
+          idTokenGoogle: process.env.GOOGLE_ID || '',
+          user: {
+            name: user.name || '',
+            email: user.email || '',
+            image: user.image || '',
+          },
+        };
+        const response = await authService.authenticateWithGoogle(
+          authProviderGoogle
+        );
+        return response;
+      }
+      return false;
     },
   },
 });
