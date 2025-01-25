@@ -11,8 +11,13 @@ const handler = NextAuth({
         password: {},
       },
       async authorize(credentials) {
-        console.log('credentials::', credentials);
-        const user = { id: '1', name: 'MUDAR', email: credentials!.email };
+        // console.log('credentials::', credentials);
+        const user = {
+          id: '1',
+          name: 'MUDAR',
+          email: credentials!.email,
+          qualquercoisa: 'qualquercoisa',
+        };
         if (user.email) {
           return user;
         } else {
@@ -25,6 +30,17 @@ const handler = NextAuth({
       clientSecret: process.env.GOOGLE_SECRET || 'error message',
     }),
   ],
+  callbacks: {
+    signIn({ user, account, profile, email, credentials }) {
+      console.log('signIn callback::');
+      console.log(user);
+      console.log(account?.type);
+      console.log(profile);
+      console.log(email);
+      console.log(credentials);
+      return true;
+    },
+  },
 });
 
 export { handler as GET, handler as POST }

@@ -29,7 +29,7 @@ export default function Login() {
               className='mt-4 w-full py-2 bg-green-500 text-white'
               onClick={() => setIsUserLoggedIn(false)}
             >
-              Entrar
+              Logar
             </button>
           </div>
           {!isUserLoggedIn ? <LoginDataUser /> : <RegisterUser />}

@@ -15,7 +15,7 @@ export default function LoginDataUser() {
     return isEmail(email);
   };
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!isEmailValid(email)) {
@@ -26,11 +26,13 @@ export default function LoginDataUser() {
     setEmailError('');
     dispatch(isLoading(true));
 
-    await signIn('credentials', {
+    const result = signIn('credentials', {
       email,
       password,
       callbackUrl: '/dashboard',
     });
+
+    console.log('login com email e senha::', result);
   };
 
   return (
