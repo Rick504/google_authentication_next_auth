@@ -2,7 +2,7 @@ import NextAuth from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 import CredentialsProvider from "next-auth/providers/credentials";
 import { AuthProviderGoogle } from '../../../interfaces/auth';
-import { authenticateWithGoogle } from '@/app/services/authGoogleService';
+import {  authenticateWithGoogle } from '@/app/services/authGoogleService';
 
 const handler = NextAuth({
   providers: [
@@ -13,14 +13,13 @@ const handler = NextAuth({
         password: {},
       },
       async authorize(credentials) {
-        // console.log('credentials::', credentials);
         const user = {
           id: '1',
           name: 'MUDAR',
           email: credentials!.email,
-          qualquercoisa: 'qualquercoisa',
+          password: credentials!.password,
         };
-        if (user.email) {
+        if (user.email && user.password) {
           return user;
         } else {
           return null;
@@ -35,6 +34,7 @@ const handler = NextAuth({
   callbacks: {
     async signIn({ user, account }) {
       const accounTypeProvider = 'oauth';
+      const credentialsType = 'credentials';
       if (account?.type === accounTypeProvider) {
         const authProviderGoogle: AuthProviderGoogle = {
           provider: 'google',
@@ -50,6 +50,9 @@ const handler = NextAuth({
         );
         return true;
       }
+
+      if (account?.type === credentialsType)
+        return true;
       return false;
     },
   },

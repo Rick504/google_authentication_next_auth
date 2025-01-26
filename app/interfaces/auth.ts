@@ -9,3 +9,8 @@ export type AuthProviderGoogle = {
     image?: string;
   };
 };
+
+export type AuthLogin = {
+  email: string;
+  password: string;
+}
