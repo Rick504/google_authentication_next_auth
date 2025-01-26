@@ -4,10 +4,9 @@ const slice = createSlice({
   name: 'store',
   initialState: {
     user: {
-      name: 'value init',
-      email: 'value init',
-      image: 'value init',
-      token: 'value init',
+      name: 'client value',
+      email: 'client value',
+      image: 'client value',
     },
     loading: false,
   },

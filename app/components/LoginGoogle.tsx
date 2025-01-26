@@ -3,11 +3,7 @@ import { signIn } from 'next-auth/react';
 import { useDispatch } from 'react-redux';
 import { isLoading } from '../redux/storeSlice';
 
-type LoginGoogleProps = {
-  text: string;
-};
-
-export default function LoginGoogle({ text }: LoginGoogleProps) {
+export default function LoginGoogle({ text }: { text: string }) {
   const dispatch = useDispatch();
 
   const handleSignIn = async () => {

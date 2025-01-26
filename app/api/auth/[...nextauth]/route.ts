@@ -2,8 +2,7 @@ import NextAuth from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 import CredentialsProvider from "next-auth/providers/credentials";
 import { AuthProviderGoogle } from '../../../interfaces/auth';
-import { authService } from '@/app/services/authGoogleService';
-
+import { authenticateWithGoogle } from '@/app/services/authGoogleService';
 
 const handler = NextAuth({
   providers: [
@@ -46,10 +45,10 @@ const handler = NextAuth({
             image: user.image || '',
           },
         };
-        const response = await authService.authenticateWithGoogle(
+        await authenticateWithGoogle(
           authProviderGoogle
         );
-        return response;
+        return true;
       }
       return false;
     },
