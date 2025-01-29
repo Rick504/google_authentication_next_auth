@@ -8,7 +8,8 @@ export default function LoginGoogle({ text }: { text: string }) {
 
   const handleSignIn = async () => {
     dispatch(isLoading(true));
-    await signIn('google', { callbackUrl: '/dashboard' });
+    const result = await signIn('google', { callbackUrl: '/dashboard' });
+    console.log('result::', result);
   };
 
   return (
