@@ -17,17 +17,21 @@ const handler = NextAuth({
         password: {},
       },
       async authorize(credentials) {
-        const user = {
-          id: '1',
-          name: 'MUDAR',
+        const initInfoUser = {
+          id: null,
           email: credentials!.email,
           password: credentials!.password,
         };
-        if (user.email && user.password) {
-          const { token } = await authenticateLogin(user);
+        if (initInfoUser.email && initInfoUser.password) {
+          const { user, token } = await authenticateLogin(initInfoUser);
           const cookieStore = await cookies();
           if (token) cookieStore.set('x-access-token', token);
-          return user;
+          return {
+            id: user.id,
+            name: user.name,
+            email: user.email,
+            image: user.image? user.image : '',
+          };
         } else {
           return null;
         }
