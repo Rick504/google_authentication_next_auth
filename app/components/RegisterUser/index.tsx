@@ -3,6 +3,7 @@ import isEmail from 'validator/es/lib/isEmail';
 import { useDispatch } from 'react-redux';
 import { isLoading } from '../../redux/storeSlice';
 import TermsConditions from './TermsConditions';
+import { registrationAccount } from '@/app/services/userService';
 
 export default function RegisterUser() {
   const [userName, setUserName] = useState('');
@@ -36,11 +37,13 @@ export default function RegisterUser() {
     setPasswordError('');
     dispatch(isLoading(true));
 
-    console.log('user:', {
+    const user = await registrationAccount({
       name: userName,
       email,
       password,
     });
+
+    console.log('user create:', user);
   };
 
   return (

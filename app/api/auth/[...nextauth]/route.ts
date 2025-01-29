@@ -1,7 +1,7 @@
 import NextAuth from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 import CredentialsProvider from "next-auth/providers/credentials";
-import { AuthProviderGoogle } from '../../../interfaces/auth';
+import { AuthProviderGoogle } from '../../../types/auth';
 import {
   authenticateWithGoogle,
   authenticateLogin,

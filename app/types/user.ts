@@ -8,3 +8,9 @@ export interface SessionGoole {
   user: UserGoole;
 }
 
+export interface RegistrationService {
+  name: string;
+  email: string;
+  password: string;
+}
+

@@ -1,5 +1,5 @@
 import api from '@/app/services/config/index';
-import { AuthProviderGoogle, AuthLogin } from '@/app/interfaces/auth';
+import { AuthProviderGoogle, AuthLogin } from '@/app/types/auth';
 
 export const authenticateWithGoogle = async (
   authProviderGoogle: AuthProviderGoogle

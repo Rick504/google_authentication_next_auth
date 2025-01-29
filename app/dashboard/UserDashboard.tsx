@@ -2,7 +2,7 @@
 
 import { signOut } from 'next-auth/react';
 import Image from 'next/image';
-import { UserGoole } from '../interfaces/user';
+import { UserGoole } from '../types/user';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../redux/storeSlice';
 
