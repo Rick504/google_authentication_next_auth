@@ -5,7 +5,7 @@ import { AuthProviderGoogle } from '../../../interfaces/auth';
 import {
   authenticateWithGoogle,
   authenticateLogin,
-} from '@/app/services/authGoogleService';
+} from '@/app/services/authenticateService';
 import { cookies } from 'next/headers';
 
 const handler = NextAuth({

@@ -28,13 +28,11 @@ export default function LoginDataUser() {
     setEmailError('');
     dispatch(isLoading(true));
 
-    const result = signIn('credentials', {
+    signIn('credentials', {
       email,
       password,
       callbackUrl: '/dashboard',
     });
-
-    console.log('login com email e senha::', result);
   };
 
   return (
