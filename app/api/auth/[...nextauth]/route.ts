@@ -23,14 +23,16 @@ const handler = NextAuth({
           password: credentials!.password,
         };
         if (initInfoUser.email && initInfoUser.password) {
-          const { user, token } = await authenticateLogin(initInfoUser);
+          const data = await authenticateLogin(initInfoUser);
+          if (!data) return null;
+          const { user, token } = data;
           const cookieStore = await cookies();
           if (token) cookieStore.set('x-access-token', token);
           return {
             id: user.id,
             name: user.name,
             email: user.email,
-            image: user.image? user.image : '',
+            image: user.image ? user.image : '',
           };
         } else {
           return null;
@@ -62,8 +64,7 @@ const handler = NextAuth({
         return true;
       }
 
-      if (account?.type === credentialsType)
-        return true;
+      if (account?.type === credentialsType) return true;
       return false;
     },
   },
