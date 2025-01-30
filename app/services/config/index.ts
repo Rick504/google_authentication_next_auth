@@ -1,7 +1,7 @@
 
 import axios, { AxiosInstance } from 'axios';
 
-const api: AxiosInstance = axios.create({
+const http: AxiosInstance = axios.create({
   baseURL: process.env.BASE_URL_BACKEND,
   timeout: 10000,
   headers: {
@@ -9,4 +9,4 @@ const api: AxiosInstance = axios.create({
   },
 });
 
-export default api;
+export default http;

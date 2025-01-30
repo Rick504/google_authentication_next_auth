@@ -1,11 +1,11 @@
-import api from '@/app/services/config/index';
+import http from '@/app/services/config/index';
 import { AuthProviderGoogle, AuthLogin } from '@/app/types/auth';
 
 export const authenticateWithGoogle = async (
   authProviderGoogle: AuthProviderGoogle
 ) => {
   try {
-    const { data } = await api.post(
+    const { data } = await http.post(
       '/login/provider/google',
       authProviderGoogle
     );
@@ -17,7 +17,7 @@ export const authenticateWithGoogle = async (
 
 export const authenticateLogin = async (authLogin: AuthLogin) => {
   try {
-    const { data } = await api.post('/login', {
+    const { data } = await http.post('/login', {
       email: authLogin.email,
       password: authLogin.password,
     });
