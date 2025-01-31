@@ -6,7 +6,7 @@ export const authenticateWithGoogle = async (
 ) => {
   try {
     const { data } = await http.post(
-      '/login/provider/google',
+      '/api/login/provider/google',
       authProviderGoogle
     );
     return data;
@@ -17,7 +17,7 @@ export const authenticateWithGoogle = async (
 
 export const authenticateLogin = async (authLogin: AuthLogin) => {
   try {
-    const { data } = await http.post('/login', {
+    const { data } = await http.post('/api/login', {
       email: authLogin.email,
       password: authLogin.password,
     });
