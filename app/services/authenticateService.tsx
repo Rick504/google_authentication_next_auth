@@ -24,6 +24,6 @@ export const authenticateLogin = async (authLogin: AuthLogin) => {
     if (!data.user) throw new Error('Usuário não encontrado');
     return data;
   } catch {
-    throw new Error('Erro ao autenticar Usuário');
+    return false;
   }
 };
