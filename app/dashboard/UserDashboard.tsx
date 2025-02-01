@@ -24,7 +24,7 @@ export default function UserDashboard({ user }: { user: UserGoole }) {
       <p>Bem Vindo a Home {user.name}!</p>
       <p>Email: {user.email}</p>
 
-      <button className='border' onClick={() => signOut()}>
+      <button className='border' onClick={() => signOut({ callbackUrl: '/' })}>
         Sair
       </button>
     </div>
