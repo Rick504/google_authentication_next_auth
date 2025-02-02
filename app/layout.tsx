@@ -14,7 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='pt-br'>
-      <body>
+      <body suppressHydrationWarning>
         <ReduxProvider>{children}</ReduxProvider>
       </body>
     </html>

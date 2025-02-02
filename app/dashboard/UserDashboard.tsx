@@ -4,13 +4,14 @@ import { signOut } from 'next-auth/react';
 import Image from 'next/image';
 import { UserGoole } from '../types/user';
 import { useDispatch } from 'react-redux';
-import { setUser } from '../redux/storeSlice';
+import { setUser, isLoading } from '../redux/storeSlice';
 import Cookies from 'js-cookie';
 import { persistor } from '../redux/store';
 
 export default function UserDashboard({ user }: { user: UserGoole }) {
   const defaultProfile = '/imgs/icons/png/profile.png';
   const dispatch = useDispatch();
+  dispatch(isLoading(false));
   dispatch(setUser(user));
 
   async function _signOut() {

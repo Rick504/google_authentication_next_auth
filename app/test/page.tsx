@@ -10,7 +10,7 @@ export default function UserTest() {
   // if (!name || !email) return redirect('/');
 
   return (
-    <div suppressHydrationWarning>
+    <div>
       testando state name: {name} <br />
       testando state email: {email} <br />
       testando state image: {image ? image : 'sem imagem'} <br />
