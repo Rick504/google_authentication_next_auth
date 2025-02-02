@@ -6,6 +6,7 @@ import { UserGoole } from '../types/user';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../redux/storeSlice';
 import Cookies from 'js-cookie';
+import { persistor } from '../redux/store';
 
 export default function UserDashboard({ user }: { user: UserGoole }) {
   const defaultProfile = '/imgs/icons/png/profile.png';
@@ -13,7 +14,7 @@ export default function UserDashboard({ user }: { user: UserGoole }) {
   dispatch(setUser(user));
 
   async function _signOut() {
-    dispatch(setUser({}));
+    persistor.purge();
     Cookies.remove('x-access-token');
     signOut({ callbackUrl: '/' });
   }

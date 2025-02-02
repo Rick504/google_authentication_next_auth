@@ -4,9 +4,9 @@ const slice = createSlice({
   name: 'store',
   initialState: {
     user: {
-      name: 'client value',
-      email: 'client value',
-      image: 'client value',
+      name: null,
+      email: null,
+      image: null,
     },
     loading: false,
   },

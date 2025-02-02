@@ -31,26 +31,28 @@ export default function RegisterUser() {
     setEmailError('');
 
     if (password !== confirmPassword) {
-      setPasswordError('As senhas não coincidem.');
+      setPasswordError('As senhas não são iguais.');
       return;
     }
 
     setPasswordError('');
     dispatch(isLoading(true));
 
-    const data = await registrationAccount({
+    const result = await registrationAccount({
       name: userName,
       email,
       password,
     });
 
-    if (!data.success) {
-      dispatch(isLoading(false));
-      alert(data.message.response);
-      return;
+    if (result.user && result.auth) {
+      return redirect('/dashboard');
     }
 
-    return redirect('/dashboard');
+    if (!result.success) {
+      dispatch(isLoading(false));
+      alert(result.message.response);
+      return;
+    }
   };
 
   return (
@@ -118,6 +120,9 @@ export default function RegisterUser() {
             className='border p-1 flex-grow'
           />
         </div>
+        {passwordError && (
+          <div className='text-red-500 text-sm mt-1'>{passwordError}</div>
+        )}
         <div className='flex items-center my-2'>
           <input
             type='checkbox'
@@ -129,9 +134,6 @@ export default function RegisterUser() {
           <label htmlFor='terms'>Eu aceito os Termos e Condições</label>
         </div>
         <TermsConditions />
-        {passwordError && (
-          <div className='text-red-500 text-sm mt-1'>{passwordError}</div>
-        )}
         <button
           type='submit'
           className={`mt-4 w-full py-2 rounded text-white ${
