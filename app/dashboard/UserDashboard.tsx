@@ -5,11 +5,18 @@ import Image from 'next/image';
 import { UserGoole } from '../types/user';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../redux/storeSlice';
+import Cookies from 'js-cookie';
 
 export default function UserDashboard({ user }: { user: UserGoole }) {
   const defaultProfile = '/imgs/icons/png/profile.png';
   const dispatch = useDispatch();
   dispatch(setUser(user));
+
+  async function _signOut() {
+    dispatch(setUser({}));
+    Cookies.remove('x-access-token');
+    signOut({ callbackUrl: '/' });
+  }
   return (
     <div className='flex flex-col items-center justify-center gap-3 mt-20'>
       <Image
@@ -24,7 +31,7 @@ export default function UserDashboard({ user }: { user: UserGoole }) {
       <p>Bem Vindo a Home {user.name}!</p>
       <p>Email: {user.email}</p>
 
-      <button className='border' onClick={() => signOut({ callbackUrl: '/' })}>
+      <button className='border' onClick={() => _signOut()}>
         Sair
       </button>
     </div>
