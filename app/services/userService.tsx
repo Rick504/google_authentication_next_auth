@@ -16,8 +16,12 @@ export const registrationAccount = async (user: RegistrationService) => {
     }
 
     return data;
-  } catch {
-    return false;
+  } catch (error) {
+    const axiosError = error as AxiosError;
+    return {
+      success: false,
+      message: axiosError.response?.data,
+    };
   }
 };
 
@@ -32,6 +36,9 @@ export const getUserInfo = async (token: string) => {
     return data;
   } catch (error) {
     const axiosError = error as AxiosError;
-    return axiosError.response?.data || { message: 'Erro desconhecido' };
+    return {
+      success: false,
+      message: axiosError.response?.data,
+    };
   }
 };

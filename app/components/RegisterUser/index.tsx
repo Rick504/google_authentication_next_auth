@@ -38,13 +38,18 @@ export default function RegisterUser() {
     setPasswordError('');
     dispatch(isLoading(true));
 
-    const { user } = await registrationAccount({
+    const data = await registrationAccount({
       name: userName,
       email,
       password,
     });
 
-    if (!user) return redirect('/');
+    if (!data.success) {
+      dispatch(isLoading(false));
+      alert(data.message.response);
+      return;
+    }
+
     return redirect('/dashboard');
   };
 

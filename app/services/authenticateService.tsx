@@ -1,5 +1,6 @@
 import http from '@/app/services/config/index';
 import { AuthProviderGoogle, AuthLogin } from '@/app/types/auth';
+import { AxiosError } from 'axios';
 import Cookies from 'js-cookie';
 
 export const authenticateWithGoogle = async (
@@ -11,8 +12,12 @@ export const authenticateWithGoogle = async (
       authProviderGoogle
     );
     return data;
-  } catch {
-    throw new Error('Erro ao autenticar Usuário com Google');
+  } catch (error) {
+    const axiosError = error as AxiosError;
+    return {
+      success: false,
+      message: axiosError.response?.data,
+    };
   }
 };
 
@@ -29,7 +34,11 @@ export const authenticateLogin = async (authLogin: AuthLogin) => {
 
     if (!data.user) throw new Error('Usuário não encontrado');
     return data;
-  } catch {
-    return false;
+  } catch (error) {
+    const axiosError = error as AxiosError;
+    return {
+      success: false,
+      message: axiosError.response?.data,
+    };
   }
 };

@@ -30,14 +30,15 @@ export default function LoginDataUser() {
     dispatch(isLoading(true));
 
     if (email && password) {
-      const data = await authenticateLogin({
+      const result = await authenticateLogin({
         email: email,
         password: password,
       });
-      if (!data) {
-        alert('Dados invalidos');
+
+      if (!result.success) {
+        alert(result.message.error);
         dispatch(isLoading(false));
-        return;
+        return result.error;
       }
 
       await signIn('credentials', {
