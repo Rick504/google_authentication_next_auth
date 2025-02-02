@@ -1,6 +1,7 @@
 import http from './config/index';
 import { RegistrationService } from '@/app/types/user';
 import { AxiosError } from 'axios';
+import Cookies from 'js-cookie';
 
 export const registrationAccount = async (user: RegistrationService) => {
   try {
@@ -9,6 +10,11 @@ export const registrationAccount = async (user: RegistrationService) => {
       email: user.email,
       password: user.password,
     });
+
+    if (data && data.token) {
+      Cookies.set('x-access-token', data.token, { expires: 1 / 24 });
+    }
+
     return data;
   } catch {
     return false;

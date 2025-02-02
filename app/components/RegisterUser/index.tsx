@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { isLoading } from '../../redux/storeSlice';
 import TermsConditions from './TermsConditions';
 import { registrationAccount } from '@/app/services/userService';
+import { redirect } from 'next/navigation';
 
 export default function RegisterUser() {
   const [userName, setUserName] = useState('');
@@ -37,13 +38,14 @@ export default function RegisterUser() {
     setPasswordError('');
     dispatch(isLoading(true));
 
-    const user = await registrationAccount({
+    const { user } = await registrationAccount({
       name: userName,
       email,
       password,
     });
 
-    console.log('user create:', user);
+    if (!user) return redirect('/');
+    return redirect('/dashboard');
   };
 
   return (
