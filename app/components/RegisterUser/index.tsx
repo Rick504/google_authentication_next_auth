@@ -50,14 +50,14 @@ export default function RegisterUser() {
 
     if (!result.success) {
       dispatch(isLoading(false));
-      alert(result.message.response);
+      setEmailError(result.message.response);
       return;
     }
   };
 
   return (
     <div>
-      <form className='text-center' onSubmit={handleCreateUser}>
+      <form onSubmit={handleCreateUser}>
         <div className='flex flex-col items-start my-2'>
           <label htmlFor='userName' className='my-2'>
             Nome:
