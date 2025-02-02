@@ -2,10 +2,7 @@ import NextAuth from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 import CredentialsProvider from "next-auth/providers/credentials";
 import { AuthProviderGoogle } from '../../../types/auth';
-import {
-  authenticateWithGoogle,
-  authenticateLogin,
-} from '@/app/services/authenticateService';
+import { authenticateWithGoogle } from '@/app/services/authenticateService';
 import { cookies } from 'next/headers';
 
 const handler = NextAuth({
@@ -17,23 +14,13 @@ const handler = NextAuth({
         password: {},
       },
       async authorize(credentials) {
-        const initInfoUser = {
-          id: null,
-          email: credentials!.email,
-          password: credentials!.password,
+        const user = {
+          id: '1',
+          email: credentials?.email,
+          password: credentials?.password,
         };
-        if (initInfoUser.email && initInfoUser.password) {
-          const data = await authenticateLogin(initInfoUser);
-          if (!data) return null;
-          const { user, token } = data;
-          const cookieStore = await cookies();
-          if (token) cookieStore.set('x-access-token', token);
-          return {
-            id: user.id,
-            name: user.name,
-            email: user.email,
-            image: user.image ? user.image : '',
-          };
+        if (user) {
+          return user;
         } else {
           return null;
         }
@@ -64,7 +51,9 @@ const handler = NextAuth({
         return true;
       }
 
-      if (account?.type === credentialsType) return true;
+      if (account?.type === credentialsType) {
+        return true;
+      }
       return false;
     },
   },

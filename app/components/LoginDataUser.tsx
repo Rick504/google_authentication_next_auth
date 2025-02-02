@@ -4,6 +4,7 @@ import isEmail from 'validator/es/lib/isEmail';
 import { useDispatch } from 'react-redux';
 import { isLoading } from '../redux/storeSlice';
 import { Eye, EyeOff } from 'lucide-react';
+import { authenticateLogin } from '@/app/services/authenticateService';
 
 export default function LoginDataUser() {
   const [email, setEmail] = useState('');
@@ -17,7 +18,7 @@ export default function LoginDataUser() {
     return isEmail(email);
   };
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!isEmailValid(email)) {
@@ -28,11 +29,23 @@ export default function LoginDataUser() {
     setEmailError('');
     dispatch(isLoading(true));
 
-    signIn('credentials', {
-      email,
-      password,
-      callbackUrl: '/dashboard',
-    });
+    if (email && password) {
+      const data = await authenticateLogin({
+        email: email,
+        password: password,
+      });
+      if (!data) {
+        alert('Dados invalidos');
+        dispatch(isLoading(false));
+        return;
+      }
+
+      await signIn('credentials', {
+        email,
+        password,
+        callbackUrl: '/dashboard',
+      });
+    }
   };
 
   return (

@@ -10,7 +10,7 @@ export default function UserTest() {
     <div suppressHydrationWarning>
       testando state name: {user.name} <br />
       testando state email: {user.email} <br />
-      testando state image: {user.image} <br />
+      testando state image: {user.image ? user.image : 'sem imagem'} <br />
     </div>
   );
 }
