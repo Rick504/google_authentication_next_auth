@@ -11,6 +11,7 @@ export default function LoginDataUser() {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [emailError, setEmailError] = useState('');
+  const [credentialsError, setCredentialsError] = useState('');
 
   const dispatch = useDispatch();
 
@@ -35,17 +36,20 @@ export default function LoginDataUser() {
         password: password,
       });
 
+      if (result.user && result.auth) {
+        await signIn('credentials', {
+          email,
+          password,
+          callbackUrl: '/dashboard',
+        });
+        return;
+      }
+
       if (!result.success) {
-        alert(result.message.error);
+        setCredentialsError(result.message.error);
         dispatch(isLoading(false));
         return result.error;
       }
-
-      await signIn('credentials', {
-        email,
-        password,
-        callbackUrl: '/dashboard',
-      });
     }
   };
 
@@ -91,6 +95,9 @@ export default function LoginDataUser() {
           >
             {!showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
           </button>
+          {credentialsError && (
+            <div className='text-red-500 text-sm mt-1'>{credentialsError}</div>
+          )}
         </div>
         <button
           type='submit'
