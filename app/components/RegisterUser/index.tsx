@@ -45,6 +45,7 @@ export default function RegisterUser() {
     });
 
     if (result.user && result.auth) {
+      dispatch(isLoading(false));
       return redirect('/dashboard');
     }
 
